@@ -18,17 +18,17 @@ namespace WzDumper {
             InitializeComponent();
             ToolTip toolTip = new ToolTip();
             toolTip.SetToolTip(includePngMp3Box, "Extracts png and mp3 files along with the generated XML files");
-            string linkTypeText = "Sets the method for creating link files\n" +
-                "Note: Symbolic and Hard links cannot be created when extracting to a remote drive.\n" +
-                "Methods:\n" +
-                "Symbolic (recommended, requires admin privilage, default when running as admin)\n" +
-                "Hard (default when not running as admin, falls back to Copy mode for files that have reached the link limit)\n" +
+            string linkTypeText = "設置創建鏈接文件的方法\n" +
+                "筆記: Symbolic and Hard links cannot be created when extracting to a remote drive.\n" +
+                "方法:\n" +
+                "Symbolic (推薦, 需要管理員權限, 當以管理員權限開啟時為預設)\n" +
+                "Hard (當沒有以管理員權限開啟時為預設, falls back to Copy mode for files that have reached the link limit)\n" +
                 "Copy (creates another copy entirely, use this if extracting to a remote drive)";
             toolTip.SetToolTip(LinkTypeLabel, linkTypeText);
             toolTip.SetToolTip(LinkTypeComboBox, linkTypeText);
-            toolTip.SetToolTip(includeVersionInFolderBox, "Adds the file version to the end of the WZ folder (e.g. Base.wz_v81)");
-            toolTip.SetToolTip(multiThreadCheckBox, "This only applies when dumping from a folder.\nDumps multiple WZ files concurrently depending on the number of extractor threads.");
-            toolTip.SetToolTip(extractorThreadsNum, "Sets the max number of WZ files you want to extract at once.\nDefault is the number of processor threads available.");
+            toolTip.SetToolTip(includeVersionInFolderBox, "將版本添加到WZ文件夾的結尾 (例如 Base.wz_v81)");
+            toolTip.SetToolTip(multiThreadCheckBox, "只有在提取資料夾時啟用 \n根據線程數量，同時提取多個WZ文件。");
+            toolTip.SetToolTip(extractorThreadsNum, "設置一次要提取的WZ文件的最大數量.\n預設是可用的處理器最大線程數.");
             toolTip.ReshowDelay = 500;
             toolTip.ShowAlways = true;
             extractorThreadsNum.Maximum = Environment.ProcessorCount;
@@ -68,7 +68,7 @@ namespace WzDumper {
         }
 
         private void SelectWzFile(object sender, EventArgs e) {
-            var openFile = new OpenFileDialog { Title = "Select File", Filter = "WZ Files|*.wz|WZ Image Files|*.img" };
+            var openFile = new OpenFileDialog { Title = "選擇檔案", Filter = "WZ Files|*.wz|WZ Image Files|*.img" };
             if (openFile.ShowDialog() == DialogResult.OK) {
                 InputSelected(openFile.FileName);
             }
@@ -102,19 +102,19 @@ namespace WzDumper {
                 }
             } catch (Exception e) {
                 error = true;
-                MessageBox.Show("An error occurred: " + e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("錯誤發生: " + e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 if (Directory.GetFiles(directory).Length == 0)
                     Directory.Delete(directory, true);
             } finally {
                 tw.Dispose();
             }
             if (error) {
-                UpdateTextBoxInfo(Info, "An error occurred while dumping " + fName, true);
-                UpdateToolstripStatus("An error occurred while dumping " + fName);
+                UpdateTextBoxInfo(Info, "提取時發生錯誤 " + fName, true);
+                UpdateToolstripStatus("提取時發生錯誤 " + fName);
             } else {
                 var duration = DateTime.Now - startTime;
-                UpdateTextBoxInfo(Info, "Finished dumping " + fName + " in " + GetDurationAsString(duration), true);
-                UpdateToolstripStatus("Dumped " + fName + " successfully");
+                UpdateTextBoxInfo(Info, "結束提取 " + fName + " in " + GetDurationAsString(duration), true);
+                UpdateToolstripStatus("提取 " + fName + " 成功");
             }
         }
 
@@ -146,7 +146,7 @@ namespace WzDumper {
         }
 
         private void DumpFile(object sender, EventArgs e) {
-            UpdateToolstripStatus("Parsing...");
+            UpdateToolstripStatus("處理中...");
             DisableButtons();
             var filePath = WZFileTB.Text;
             FileAttributes attr = File.GetAttributes(filePath);
@@ -170,13 +170,13 @@ namespace WzDumper {
                     }
                 } catch (UnauthorizedAccessException) {
                     if (regFile != null) regFile.Dispose();
-                    MessageBox.Show("Please re-run this program as an administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    MessageBox.Show("請使用管理員權限重新開啟此程式.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     UpdateToolstripStatus("");
                     EnableButtons();
                     return;
                 } catch (Exception ex) {
                     if (regFile != null) regFile.Dispose();
-                    MessageBox.Show("An error occurred while parsing this file: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("發生錯誤，訊息: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     UpdateToolstripStatus("");
                     EnableButtons();
                     return;
@@ -192,7 +192,7 @@ namespace WzDumper {
                     extractFolder = GetValidFolderName(extractFolder, true);
                 }
                 if (Directory.Exists(extractFolder)) {
-                    var result = MessageBox.Show(extractFolder + " already exists.\r\nDo you want to overwrite that folder?\r\nNote: Clicking No will make a new folder.", "Folder Already Exists", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                    var result = MessageBox.Show(extractFolder + " 已經存在.\r\n是否要覆蓋資料夾?\r\n提示: 點選 No 將會創建新資料夾.", "Folder Already Exists", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
                     if (result == DialogResult.Cancel) {
                         if (regFile != null) regFile.Dispose();
                         UpdateToolstripStatus("");
@@ -206,34 +206,34 @@ namespace WzDumper {
                 if (!Directory.Exists(extractFolder))
                     Directory.CreateDirectory(extractFolder);
                 if (listFile != null) {
-                    Info.AppendText("Dumping data from " + fileName + " to " + extractFolder + "...\r\n");
+                    Info.AppendText("提取資料從 " + fileName + " 到 " + extractFolder + "...\r\n");
                 } else if (includePngMp3Box.Checked) {
-                    Info.AppendText("Dumping MP3s, PNGs and XMLs from " + fileName + " to " + extractFolder + "...\r\n");
+                    Info.AppendText("提取 MP3s, PNGs 和XMLs 從檔案 " + fileName + " 到 " + extractFolder + "...\r\n");
                 } else {
-                    Info.AppendText("Dumping XMLs from " + fileName + " to " + extractFolder + "...\r\n");
+                    Info.AppendText("提取 XML 從 " + fileName + " 到 " + extractFolder + "...\r\n");
                 }
                 if (listFile != null) {
                     DumpListWz(listFile, fileName, extractFolder, DateTime.Now);
                     listFile.Dispose();
                     EnableButtons();
                 } else {
-                    UpdateToolstripStatus("Preparing...");
+                    UpdateToolstripStatus("準備中...");
                     CancelSource = new CancellationTokenSource();
                     CreateSingleDumperThread(regFile, new WzXml(this, extractDir, new DirectoryInfo(extractFolder).Name, includePngMp3Box.Checked, SelectedLinkType), fileName);
                 }
             } else {
                 var allFiles = Directory.GetFiles(filePath, "*.wz");
                 if (allFiles.Length != 0) {
-                    string filesFound = "WZ Files Found: ";
+                    string filesFound = "未找到WZ文件: ";
                     foreach (var fileName in allFiles) {
                         filesFound += Path.GetFileName(fileName) + ", ";
                     }
                     Info.AppendText(filesFound.Substring(0, filesFound.Length - 2) + "\r\n");
-                    allFiles = allFiles.Where(fileName => !Regex.IsMatch(fileName, "[0-9]{3}.wz$", RegexOptions.IgnoreCase)).ToArray(); ;
+                    // allFiles = allFiles.Where(fileName => !Regex.IsMatch(fileName, "[0-9]{3}.wz$", RegexOptions.IgnoreCase)).ToArray(); ;
                     Array.Sort(allFiles, Compare);
                     CreateMultipleDumperThreads(filePath, allFiles, outputFolderTB.Text);
                 } else {
-                    MessageBox.Show("There are no WZ Files located in the selected folder. Please choose a different folder.", "No WZ Files Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("所選擇的資料夾不包含Wz檔案. 請選擇其他資料夾.", "No WZ Files Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     UpdateToolstripStatus("");
                     EnableButtons();
                 }
@@ -251,10 +251,10 @@ namespace WzDumper {
                 img = new WzImage(fName, fStream, SelectedVersion);
                 img.ParseImage();
             } catch (IOException ex) {
-                MessageBox.Show("Unable to read file: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("無法讀取檔案: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             } catch (ArgumentException) {
-                MessageBox.Show("Please select a WZ Image File.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("請選擇Wz影像檔e.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             } catch (UnauthorizedAccessException) {
                 MessageBox.Show("Please re-run this program as an administrator to be able to dump files that are not in the OS drive.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
@@ -301,8 +301,8 @@ namespace WzDumper {
             fStream.Dispose();
             CancelSource.Dispose();
             var duration = DateTime.Now - startTime;
-            UpdateTextBoxInfo(Info, "Finished dumping " + fName + " in " + GetDurationAsString(duration), true);
-            UpdateToolstripStatus("Dumped " + fName + " successfully");
+            UpdateTextBoxInfo(Info, "完成提取 " + fName + " 成功 " + GetDurationAsString(duration), true);
+            UpdateToolstripStatus("提取 " + fName + " successfully");
             EnableButtons();
         }
 
@@ -316,14 +316,14 @@ namespace WzDumper {
                 if (CancelSource.Token.IsCancellationRequested) {
                     if (Exit)
                         return;
-                    message = "Canceled dumping " + fileName;
+                    message = "取消提取 " + fileName;
                 } else if (IsError) {
-                    message = "An error occurred while dumping " + fileName;
+                    message = "提取中發生錯誤 " + fileName;
                 } else {
-                    message = "Finished dumping " + fileName;
+                    message = "完成提取 " + fileName;
                 }
                 UpdateToolstripStatus(message);
-                UpdateTextBoxInfo(Info, message + ".\r\nElapsed time: " + GetDurationAsString(duration), true);
+                UpdateTextBoxInfo(Info, message + ".\r\n經過時間: " + GetDurationAsString(duration), true);
                 IsError = false;
                 IsFinished = true;
                 EnableButtons();
@@ -347,16 +347,16 @@ namespace WzDumper {
                 }
             } catch (IOException ex) {
                 if (regFile != null) regFile.Dispose();
-                message = "An IO error occurred: " + ex.Message;
+                message = "發生IO錯誤: " + ex.Message;
             } catch (UnauthorizedAccessException) {
                 if (regFile != null) regFile.Dispose();
-                message = "Please re-run this program as an administrator.";
+                message = "請以管理員權限重啟此程式";
             } catch (Exception ex) {
                 if (regFile != null) regFile.Dispose();
-                message = "An error occurred while parsing this file: " + ex.Message;
+                message = "處理檔案中發生問題: " + ex.Message;
             }
             if (!String.IsNullOrEmpty(message)) {
-                UpdateTextBoxInfo(Info, "Error while parsing file " + Path.GetFileName(fileName) + "\r\nMessage: " + message + "\r\nContinuing...", true);
+                UpdateTextBoxInfo(Info, "處理文件時發生錯誤 " + Path.GetFileName(fileName) + "\r\n訊息: " + message + "\r\nContinuing...", true);
                 IsError = true;
                 return;
             }
@@ -372,11 +372,11 @@ namespace WzDumper {
             if (listFile == null)
                 UpdateTextBoxInfo(versionBox, regFile.Version.ToString(CultureInfo.CurrentCulture), false);
             if (listFile != null) {
-                UpdateTextBoxInfo(Info, "Dumping data from " + wzName + " to " + nFolder + "...", true);
+                UpdateTextBoxInfo(Info, "提取資料從 " + wzName + " 到 " + nFolder + "...", true);
             } else if (includePngMp3Box.Checked) {
-                UpdateTextBoxInfo(Info, "Dumping MP3s, PNGs and XMLs from " + wzName + " to " + nFolder + "...", true);
+                UpdateTextBoxInfo(Info, "提取 MP3, PNG 和 XML 從 " + wzName + " 到 " + nFolder + "...", true);
             } else {
-                UpdateTextBoxInfo(Info, "Dumping XMLs from " + wzName + " to " + nFolder + "...", true);
+                UpdateTextBoxInfo(Info, "提取 XML 從 " + wzName + " 到 " + nFolder + "...", true);
             }
             if (listFile != null) {
                 DumpListWz(listFile, wzName, nFolder, DateTime.Now);
@@ -403,14 +403,14 @@ namespace WzDumper {
                 if (CancelSource.Token.IsCancellationRequested) {
                     if (Exit)
                         return;
-                    UpdateTextBoxInfo(Info, "Canceled dumping WZ Files. Elapsed time: " + GetDurationAsString(duration), true);
-                    UpdateToolstripStatus("Dumping WZ Files canceled");
+                    UpdateTextBoxInfo(Info, "取消提取WZ檔案. 花費時間: " + GetDurationAsString(duration), true);
+                    UpdateToolstripStatus("提取WZ檔案取消");
                 } else if (IsError) {
-                    UpdateTextBoxInfo(Info, "An error occurred while dumping WZ Files. Elapsed time: " + GetDurationAsString(duration), true);
-                    UpdateToolstripStatus("An error occurred while dumping WZ Files");
+                    UpdateTextBoxInfo(Info, "提取WZ檔案中發生問題. 花費時間: " + GetDurationAsString(duration), true);
+                    UpdateToolstripStatus("提取WZ檔案中發生問題");
                 } else {
-                    UpdateTextBoxInfo(Info, "Finished dumping all WZ Files in " + wzFolder + " in " + GetDurationAsString(duration), true);
-                    UpdateToolstripStatus("Dumped all WZ Files successfully");
+                    UpdateTextBoxInfo(Info, "提取所有WZ檔案從 " + wzFolder + " 到 " + GetDurationAsString(duration), true);
+                    UpdateToolstripStatus("提取所有WZ 檔案成功");
                 }
                 IsError = false;
                 IsFinished = true;
@@ -425,10 +425,10 @@ namespace WzDumper {
             try {
                 wzxml.DumpDir(dir);
                 if (!singleDump && !CancelSource.Token.IsCancellationRequested)
-                    UpdateTextBoxInfo(Info, "Finished dumping " + dir.Name, true);
+                    UpdateTextBoxInfo(Info, "成功提取 " + dir.Name, true);
             } catch (Exception ex) {
                 if (!CancelSource.Token.IsCancellationRequested) {
-                    UpdateTextBoxInfo(Info, dir.Name + " Exception: " + ex.Message/* + " " + ex.StackTrace*/, true);
+                    UpdateTextBoxInfo(Info, dir.Name + " 例外狀況: " + ex.Message/* + " " + ex.StackTrace*/, true);
                     IsError = true;
                 }
             } finally {
@@ -439,40 +439,41 @@ namespace WzDumper {
         private static string GetDurationAsString(TimeSpan duration) {
             string s = String.Empty;
             if (duration.Hours != 0) {
-                s += duration.Hours + " hour";
-                if (duration.Hours != 1)
-                    s += "s";
+                s += duration.Hours + " 小時";
+              /*  if (duration.Hours != 1)
+                    s += "s";*/
             }
             if (duration.Minutes != 0) {
                 if (!string.IsNullOrEmpty(s))
                     s += ", ";
-                s += duration.Minutes + " minute";
-                if (duration.Minutes != 1)
-                    s += "s";
+                s += duration.Minutes + " 分鐘";
+               /* if (duration.Minutes != 1)
+                    s += "s";*/
                 s += ", ";
             }
-            s += duration.Seconds + " second";
-            if (duration.Seconds != 1)
-                s += "s";
-            s += " and ";
-            s += duration.Milliseconds + " millisecond";
-            if (duration.Milliseconds != 1)
-                s += "s";
+            s += duration.Seconds + " 秒鐘";
+            /*   if (duration.Seconds != 1)
+                   s += "s";
+               s += " and ";*/
+            s += " ";
+            s += duration.Milliseconds + " 毫秒";
+         /*   if (duration.Milliseconds != 1)
+                s += "s";*/
             return s;
         }
 
         private void CancelOperation(object sender, EventArgs e) {
-            if (MessageBox.Show("Are you sure you want to cancel the current operation?", "Cancel", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+            if (MessageBox.Show("請問是否要取消當前操作?", "Cancel", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
                 return;
             if (CancelSource != null)
                 CancelSource.Cancel(true);
             CancelOpButton.Enabled = false;
-            UpdateTextBoxInfo(Info, "Canceling... Waiting for the current image(s) to finish dumping...", true);
+            UpdateTextBoxInfo(Info, "取笑中... Waiting for the current image(s) to finish dumping...", true);
         }
 
         private void Form1Load(object sender, EventArgs e) {
             if (!File.Exists(Application.StartupPath + @"\MapleLib.dll")) {
-                MessageBox.Show("Please make sure MapleLib.dll is in the program directory before executing the program.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show("請確認 MapleLib.dll 是否在同個目錄下.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 Close();
                 return;
             }
@@ -501,7 +502,7 @@ namespace WzDumper {
         private void Form1FormClosing(object sender, FormClosingEventArgs e) {
             if (IsFinished)
                 return;
-            if (MessageBox.Show("You can not close the program while it is still dumping. Do you wish to cancel the operation?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes) {
+            if (MessageBox.Show("提取中 無法取消本程式. 是否要取消此操作?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes) {
                 Exit = true;
                 if (CancelSource != null)
                     CancelSource.Cancel(true);
@@ -622,11 +623,11 @@ namespace WzDumper {
         }
 
         private void SelectWzFolder_Click(object sender, EventArgs e) {
-            var open = new FolderBrowserDialog { Description = "Select the folder that contains the WZ Files you wish to dump" };
+            var open = new FolderBrowserDialog { Description = "請選擇你要提取Wz的文件夾" };
             if (open.ShowDialog() == DialogResult.OK) {
                 var allFiles = Directory.GetFiles(open.SelectedPath, "*.wz");
                 if (allFiles.Length == 0) {
-                    MessageBox.Show("There are no WZ Files located in the selected folder. Please choose a different folder.", "No WZ Files Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("選擇的資料夾沒有Wz檔案. 請選擇其他資料夾.", "No WZ Files Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 } else {
                     InputSelected(open.SelectedPath);
                 }
@@ -635,7 +636,7 @@ namespace WzDumper {
         }
 
         private void SelectExtractDestination_Click(object sender, EventArgs e) {
-            var open = new FolderBrowserDialog { Description = "Select the folder you wish to dump to" };
+            var open = new FolderBrowserDialog { Description = "請選擇你要提取出來放置的文件夾" };
             if (open.ShowDialog() == DialogResult.OK) {
                 outputFolderTB.Text = open.SelectedPath;
                 DumpWzButton.Enabled = WZFileTB.Text.Length > 0 && outputFolderTB.Text.Length > 0;

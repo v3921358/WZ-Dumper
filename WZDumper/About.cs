@@ -7,8 +7,8 @@ namespace WzDumper {
 	internal sealed partial class About : Form {
 		public About() {
 			InitializeComponent();
-			Text = "About WZ Dumper";
-			appVer.Text = String.Format(CultureInfo.CurrentCulture, "{0} Version {1}", AssemblyProduct, AssemblyVersion);
+			Text = "關於 WZ 提取器(中文化By 宗達)";
+			appVer.Text = String.Format(CultureInfo.CurrentCulture, "{0} 版本 {1}", AssemblyProduct, AssemblyVersion);
 		}
 
 		#region Assembly Attribute Accessors
