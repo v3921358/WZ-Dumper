@@ -164,12 +164,12 @@
             this.MapleVersionComboBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.MapleVersionComboBox.FormattingEnabled = true;
             this.MapleVersionComboBox.Items.AddRange(new object[] {
-            "None",
+            "None(GMS-v117+/TMS-Lastest)",
             "GMS (v0.56-0.116)",
-            "EMS/MSEA"});
+            "CMS/EMS/MSEA/TMS"});
             this.MapleVersionComboBox.Location = new System.Drawing.Point(76, 329);
             this.MapleVersionComboBox.Name = "MapleVersionComboBox";
-            this.MapleVersionComboBox.Size = new System.Drawing.Size(122, 20);
+            this.MapleVersionComboBox.Size = new System.Drawing.Size(175, 20);
             this.MapleVersionComboBox.TabIndex = 1;
             this.MapleVersionComboBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MapleVersionComboBoxKeyPress);
             // 
@@ -178,7 +178,7 @@
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.label3.Location = new System.Drawing.Point(228, 332);
+            this.label3.Location = new System.Drawing.Point(257, 332);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(82, 13);
             this.label3.TabIndex = 16;
@@ -261,14 +261,14 @@
             // clearInfoToolStripMenuItem
             // 
             this.clearInfoToolStripMenuItem.Name = "clearInfoToolStripMenuItem";
-            this.clearInfoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clearInfoToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.clearInfoToolStripMenuItem.Text = "清除信息";
             this.clearInfoToolStripMenuItem.Click += new System.EventHandler(this.ClearInfoToolStripMenuItemClick);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.exitToolStripMenuItem.Text = "離開";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItemClick);
             // 
