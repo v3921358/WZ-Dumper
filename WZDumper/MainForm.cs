@@ -428,7 +428,7 @@ namespace WzDumper {
                     UpdateTextBoxInfo(Info, "成功提取 " + dir.Name, true);
             } catch (Exception ex) {
                 if (!CancelSource.Token.IsCancellationRequested) {
-                    UpdateTextBoxInfo(Info, dir.Name + " 例外狀況: " + ex.Message/* + " " + ex.StackTrace*/, true);
+                    UpdateTextBoxInfo(Info, dir.Name + " 例外狀況: " + ex.Message + " " + ex.StackTrace, true);
                     IsError = true;
                 }
             } finally {
