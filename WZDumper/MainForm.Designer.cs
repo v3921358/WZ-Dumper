@@ -63,9 +63,9 @@
             // SelectWzFileButton
             // 
             this.SelectWzFileButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.SelectWzFileButton.Location = new System.Drawing.Point(537, 271);
+            this.SelectWzFileButton.Location = new System.Drawing.Point(558, 271);
             this.SelectWzFileButton.Name = "SelectWzFileButton";
-            this.SelectWzFileButton.Size = new System.Drawing.Size(67, 21);
+            this.SelectWzFileButton.Size = new System.Drawing.Size(82, 21);
             this.SelectWzFileButton.TabIndex = 0;
             this.SelectWzFileButton.Text = "選擇檔案";
             this.SelectWzFileButton.UseVisualStyleBackColor = true;
@@ -75,9 +75,9 @@
             // 
             this.DumpWzButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.DumpWzButton.Enabled = false;
-            this.DumpWzButton.Location = new System.Drawing.Point(537, 327);
+            this.DumpWzButton.Location = new System.Drawing.Point(558, 324);
             this.DumpWzButton.Name = "DumpWzButton";
-            this.DumpWzButton.Size = new System.Drawing.Size(72, 21);
+            this.DumpWzButton.Size = new System.Drawing.Size(82, 21);
             this.DumpWzButton.TabIndex = 5;
             this.DumpWzButton.Text = "提取";
             this.DumpWzButton.UseVisualStyleBackColor = true;
@@ -94,7 +94,7 @@
             this.Info.Name = "Info";
             this.Info.ReadOnly = true;
             this.Info.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.Info.Size = new System.Drawing.Size(680, 239);
+            this.Info.Size = new System.Drawing.Size(723, 239);
             this.Info.TabIndex = 9;
             this.Info.TabStop = false;
             // 
@@ -102,7 +102,7 @@
             // 
             this.includePngMp3Box.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.includePngMp3Box.AutoSize = true;
-            this.includePngMp3Box.Location = new System.Drawing.Point(12, 357);
+            this.includePngMp3Box.Location = new System.Drawing.Point(15, 357);
             this.includePngMp3Box.Name = "includePngMp3Box";
             this.includePngMp3Box.Size = new System.Drawing.Size(108, 16);
             this.includePngMp3Box.TabIndex = 3;
@@ -116,7 +116,7 @@
             this.toolStripStatusLabel1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 404);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(704, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(747, 22);
             this.statusStrip1.TabIndex = 17;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -129,9 +129,9 @@
             // 
             this.CancelOpButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.CancelOpButton.Enabled = false;
-            this.CancelOpButton.Location = new System.Drawing.Point(615, 327);
+            this.CancelOpButton.Location = new System.Drawing.Point(653, 324);
             this.CancelOpButton.Name = "CancelOpButton";
-            this.CancelOpButton.Size = new System.Drawing.Size(60, 21);
+            this.CancelOpButton.Size = new System.Drawing.Size(82, 21);
             this.CancelOpButton.TabIndex = 7;
             this.CancelOpButton.Text = "取消";
             this.CancelOpButton.UseVisualStyleBackColor = true;
@@ -141,7 +141,7 @@
             // 
             this.versionBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.versionBox.Enabled = false;
-            this.versionBox.Location = new System.Drawing.Point(345, 328);
+            this.versionBox.Location = new System.Drawing.Point(381, 328);
             this.versionBox.MaxLength = 5;
             this.versionBox.Name = "versionBox";
             this.versionBox.ReadOnly = true;
@@ -153,7 +153,7 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.label2.Location = new System.Drawing.Point(9, 332);
+            this.label2.Location = new System.Drawing.Point(12, 332);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 13);
             this.label2.TabIndex = 15;
@@ -167,9 +167,9 @@
             "None(GMS-v117+/TMS-Lastest)",
             "GMS (v0.56-0.116)",
             "CMS/EMS/MSEA/TMS"});
-            this.MapleVersionComboBox.Location = new System.Drawing.Point(76, 329);
+            this.MapleVersionComboBox.Location = new System.Drawing.Point(97, 329);
             this.MapleVersionComboBox.Name = "MapleVersionComboBox";
-            this.MapleVersionComboBox.Size = new System.Drawing.Size(175, 20);
+            this.MapleVersionComboBox.Size = new System.Drawing.Size(190, 20);
             this.MapleVersionComboBox.TabIndex = 1;
             this.MapleVersionComboBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MapleVersionComboBoxKeyPress);
             // 
@@ -178,7 +178,7 @@
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.label3.Location = new System.Drawing.Point(257, 332);
+            this.label3.Location = new System.Drawing.Point(293, 332);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(82, 13);
             this.label3.TabIndex = 16;
@@ -188,7 +188,7 @@
             // 
             this.WZFileTB.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.WZFileTB.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.WZFileTB.Location = new System.Drawing.Point(76, 272);
+            this.WZFileTB.Location = new System.Drawing.Point(97, 272);
             this.WZFileTB.Name = "WZFileTB";
             this.WZFileTB.ReadOnly = true;
             this.WZFileTB.Size = new System.Drawing.Size(455, 22);
@@ -198,7 +198,7 @@
             // 
             this.outputFolderTB.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.outputFolderTB.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.outputFolderTB.Location = new System.Drawing.Point(76, 300);
+            this.outputFolderTB.Location = new System.Drawing.Point(97, 300);
             this.outputFolderTB.Name = "outputFolderTB";
             this.outputFolderTB.ReadOnly = true;
             this.outputFolderTB.Size = new System.Drawing.Size(455, 22);
@@ -208,7 +208,7 @@
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(9, 275);
+            this.label4.Location = new System.Drawing.Point(12, 275);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(71, 12);
             this.label4.TabIndex = 13;
@@ -218,7 +218,7 @@
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(27, 303);
+            this.label5.Location = new System.Drawing.Point(13, 303);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(32, 12);
             this.label5.TabIndex = 14;
@@ -228,9 +228,9 @@
             // 
             this.openFolderButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.openFolderButton.Enabled = false;
-            this.openFolderButton.Location = new System.Drawing.Point(621, 299);
+            this.openFolderButton.Location = new System.Drawing.Point(653, 299);
             this.openFolderButton.Name = "openFolderButton";
-            this.openFolderButton.Size = new System.Drawing.Size(53, 21);
+            this.openFolderButton.Size = new System.Drawing.Size(82, 21);
             this.openFolderButton.TabIndex = 12;
             this.openFolderButton.Text = "開啟";
             this.openFolderButton.UseVisualStyleBackColor = true;
@@ -245,7 +245,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.menuStrip1.Size = new System.Drawing.Size(704, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(747, 24);
             this.menuStrip1.TabIndex = 8;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -255,20 +255,20 @@
             this.clearInfoToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.fileToolStripMenuItem.Text = "檔案";
             // 
             // clearInfoToolStripMenuItem
             // 
             this.clearInfoToolStripMenuItem.Name = "clearInfoToolStripMenuItem";
-            this.clearInfoToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.clearInfoToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.clearInfoToolStripMenuItem.Text = "清除信息";
             this.clearInfoToolStripMenuItem.Click += new System.EventHandler(this.ClearInfoToolStripMenuItemClick);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.exitToolStripMenuItem.Text = "離開";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItemClick);
             // 
@@ -277,13 +277,13 @@
             this.aboutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem1});
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.aboutToolStripMenuItem.Text = "關於";
             // 
             // aboutToolStripMenuItem1
             // 
             this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
-            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(98, 22);
             this.aboutToolStripMenuItem1.Text = "關於";
             this.aboutToolStripMenuItem1.Click += new System.EventHandler(this.AboutToolStripMenuItem1Click);
             // 
@@ -291,7 +291,7 @@
             // 
             this.includeVersionInFolderBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.includeVersionInFolderBox.AutoSize = true;
-            this.includeVersionInFolderBox.Location = new System.Drawing.Point(336, 357);
+            this.includeVersionInFolderBox.Location = new System.Drawing.Point(357, 357);
             this.includeVersionInFolderBox.Name = "includeVersionInFolderBox";
             this.includeVersionInFolderBox.Size = new System.Drawing.Size(180, 16);
             this.includeVersionInFolderBox.TabIndex = 4;
@@ -302,7 +302,7 @@
             // 
             this.multiThreadCheckBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.multiThreadCheckBox.AutoSize = true;
-            this.multiThreadCheckBox.Location = new System.Drawing.Point(12, 384);
+            this.multiThreadCheckBox.Location = new System.Drawing.Point(15, 384);
             this.multiThreadCheckBox.Name = "multiThreadCheckBox";
             this.multiThreadCheckBox.Size = new System.Drawing.Size(132, 16);
             this.multiThreadCheckBox.TabIndex = 19;
@@ -314,7 +314,7 @@
             // 
             this.extractorThreadsNum.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.extractorThreadsNum.Enabled = false;
-            this.extractorThreadsNum.Location = new System.Drawing.Point(246, 381);
+            this.extractorThreadsNum.Location = new System.Drawing.Point(267, 381);
             this.extractorThreadsNum.Minimum = new decimal(new int[] {
             1,
             0,
@@ -334,7 +334,7 @@
             this.extractorThreadsLabel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.extractorThreadsLabel.AutoSize = true;
             this.extractorThreadsLabel.Enabled = false;
-            this.extractorThreadsLabel.Location = new System.Drawing.Point(168, 385);
+            this.extractorThreadsLabel.Location = new System.Drawing.Point(189, 385);
             this.extractorThreadsLabel.Name = "extractorThreadsLabel";
             this.extractorThreadsLabel.Size = new System.Drawing.Size(56, 12);
             this.extractorThreadsLabel.TabIndex = 20;
@@ -343,7 +343,7 @@
             // SelectWzFolder
             // 
             this.SelectWzFolder.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.SelectWzFolder.Location = new System.Drawing.Point(610, 271);
+            this.SelectWzFolder.Location = new System.Drawing.Point(653, 271);
             this.SelectWzFolder.Name = "SelectWzFolder";
             this.SelectWzFolder.Size = new System.Drawing.Size(82, 21);
             this.SelectWzFolder.TabIndex = 21;
@@ -354,9 +354,9 @@
             // SelectExtractDestination
             // 
             this.SelectExtractDestination.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.SelectExtractDestination.Location = new System.Drawing.Point(537, 299);
+            this.SelectExtractDestination.Location = new System.Drawing.Point(558, 299);
             this.SelectExtractDestination.Name = "SelectExtractDestination";
-            this.SelectExtractDestination.Size = new System.Drawing.Size(78, 21);
+            this.SelectExtractDestination.Size = new System.Drawing.Size(82, 21);
             this.SelectExtractDestination.TabIndex = 22;
             this.SelectExtractDestination.Text = "選擇資料夾";
             this.SelectExtractDestination.UseVisualStyleBackColor = true;
@@ -366,7 +366,7 @@
             // 
             this.LinkTypeLabel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.LinkTypeLabel.AutoSize = true;
-            this.LinkTypeLabel.Location = new System.Drawing.Point(168, 358);
+            this.LinkTypeLabel.Location = new System.Drawing.Point(189, 358);
             this.LinkTypeLabel.Name = "LinkTypeLabel";
             this.LinkTypeLabel.Size = new System.Drawing.Size(56, 12);
             this.LinkTypeLabel.TabIndex = 23;
@@ -377,7 +377,7 @@
             this.LinkTypeComboBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.LinkTypeComboBox.Enabled = false;
             this.LinkTypeComboBox.FormattingEnabled = true;
-            this.LinkTypeComboBox.Location = new System.Drawing.Point(231, 354);
+            this.LinkTypeComboBox.Location = new System.Drawing.Point(252, 354);
             this.LinkTypeComboBox.Name = "LinkTypeComboBox";
             this.LinkTypeComboBox.Size = new System.Drawing.Size(82, 20);
             this.LinkTypeComboBox.TabIndex = 24;
@@ -388,7 +388,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(704, 426);
+            this.ClientSize = new System.Drawing.Size(747, 426);
             this.Controls.Add(this.extractorThreadsNum);
             this.Controls.Add(this.extractorThreadsLabel);
             this.Controls.Add(this.LinkTypeComboBox);
