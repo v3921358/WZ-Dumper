@@ -17,13 +17,13 @@ namespace WzDumper {
         public MainForm() {
             InitializeComponent();
             ToolTip toolTip = new ToolTip();
-            toolTip.SetToolTip(includePngMp3Box, "Extracts png and mp3 files along with the generated XML files");
+            toolTip.SetToolTip(includePngMp3Box, "生成 XML 文件時同時提取 png 圖片及 mp3 檔案");
             string linkTypeText = "設置創建鏈接文件的方法\n" +
-                "筆記: Symbolic and Hard links cannot be created when extracting to a remote drive.\n" +
+                "筆記: Symbolic 和 Hard 模式不能提取到遠端硬碟上.\n" +
                 "方法:\n" +
                 "Symbolic (推薦, 需要管理員權限, 當以管理員權限開啟時為預設)\n" +
                 "Hard (當沒有以管理員權限開啟時為預設, falls back to Copy mode for files that have reached the link limit)\n" +
-                "Copy (creates another copy entirely, use this if extracting to a remote drive)";
+                "Copy (完全創建另一個副本, 提取到遠程硬碟時使用)";
             toolTip.SetToolTip(LinkTypeLabel, linkTypeText);
             toolTip.SetToolTip(LinkTypeComboBox, linkTypeText);
             toolTip.SetToolTip(includeVersionInFolderBox, "將版本添加到WZ文件夾的結尾 (例如 Base.wz_v81)");
