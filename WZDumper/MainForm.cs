@@ -366,7 +366,8 @@ namespace WzDumper {
             }
             if (!String.IsNullOrEmpty(message)) {
                 UpdateTextBoxInfo(Info, "處理文件時發生錯誤 " + Path.GetFileName(fileName) + "\r\n訊息: " + message + "\r\nContinuing...", true);
-                IsError = true;
+                if (!fileName.EndsWith("List.wz"))
+                    IsError = true;
                 return;
             }
             if (regFile == null && listFile == null)
