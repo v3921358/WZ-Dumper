@@ -143,36 +143,47 @@ namespace WzDumper {
             return currFolder;
         }
 
-        private void DumpFile(object sender, EventArgs e) {
+        private void DumpFile(object sender, EventArgs e)
+        {
             CheckOutputPath();
             UpdateToolstripStatus("處理中...");
             DisableButtons();
             var filePath = WZFileTB.Text;
             FileAttributes attr = File.GetAttributes(filePath);
-            if (!attr.HasFlag(FileAttributes.Directory)) {
+            if (!attr.HasFlag(FileAttributes.Directory))
+            {
                 var ext = Path.GetExtension(filePath);
-                if (ext != null && String.Compare(ext, ".img", StringComparison.OrdinalIgnoreCase) == 0) {
+                if (ext != null && String.Compare(ext, ".img", StringComparison.OrdinalIgnoreCase) == 0)
+                {
                     DumpXmlFromWzImage(filePath);
                     return;
                 }
                 WzListFile listFile = null;
                 WzFile regFile = null;
-                try {
-                    if (filePath.EndsWith("List.wz", StringComparison.CurrentCultureIgnoreCase)) {
+                try
+                {
+                    if (filePath.EndsWith("List.wz", StringComparison.CurrentCultureIgnoreCase))
+                    {
                         listFile = new WzListFile(filePath, SelectedVersion);
                         listFile.ParseWzFile();
-                    } else {
+                    }
+                    else
+                    {
                         List<WzFile> s = new List<WzFile>();
                         regFile = new WzFile(filePath, SelectedVersion, s);
                         regFile.ParseWzFile();
                     }
-                } catch (UnauthorizedAccessException) {
+                }
+                catch (UnauthorizedAccessException)
+                {
                     regFile?.Dispose();
                     MessageBox.Show("請使用管理員權限重新開啟此程式.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     UpdateToolstripStatus("");
                     EnableButtons();
                     return;
-                } catch (Exception ex) {
+                }
+                catch (Exception ex)
+                {
                     regFile?.Dispose();
                     MessageBox.Show("發生錯誤，訊息: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     Info.AppendText(ex.StackTrace);
@@ -187,64 +198,92 @@ namespace WzDumper {
                 var extractFolder = Path.Combine(extractDir, fileName);
                 if (listFile == null && includeVersionInFolderBox.Checked)
                     extractFolder += "_v" + regFile.Version;
-                if (File.Exists(extractFolder)) {
+                if (File.Exists(extractFolder))
+                {
                     extractFolder = GetValidFolderName(extractFolder, true);
                 }
-                if (Directory.Exists(extractFolder)) {
+                if (Directory.Exists(extractFolder))
+                {
                     var result = MessageBox.Show(extractFolder + " 已經存在.\r\n是否要覆蓋資料夾?\r\n提示: 點選 No 將會創建新資料夾.", "Folder Already Exists", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
-                    if (result == DialogResult.Cancel) {
+                    if (result == DialogResult.Cancel)
+                    {
                         regFile?.Dispose();
                         UpdateToolstripStatus("");
                         EnableButtons();
                         return;
                     }
-                    if (result != DialogResult.Yes) {
+                    if (result != DialogResult.Yes)
+                    {
                         extractFolder = GetValidFolderName(extractFolder, false);
                     }
                 }
                 if (!Directory.Exists(extractFolder))
                     Directory.CreateDirectory(extractFolder);
-                if (listFile != null) {
+                if (listFile != null)
+                {
                     Info.AppendText("提取資料從 " + fileName + " 到 " + extractFolder + "...\r\n");
-                } else if (includePngMp3Box.Checked) {
+                }
+                else if (includePngMp3Box.Checked)
+                {
                     Info.AppendText("提取 MP3s, PNGs 和XMLs 從檔案 " + fileName + " 到 " + extractFolder + "...\r\n");
-                } else {
+                }
+                else
+                {
                     Info.AppendText("提取 XML 從 " + fileName + " 到 " + extractFolder + "...\r\n");
                 }
-                if (listFile != null) {
+                if (listFile != null)
+                {
                     DumpListWz(listFile, fileName, extractFolder, DateTime.Now);
                     listFile.Dispose();
                     EnableButtons();
-                } else {
+                }
+                else
+                {
                     UpdateToolstripStatus("準備中...");
                     CancelSource = new CancellationTokenSource();
                     CreateSingleDumperThread(regFile, new WzXml(this, extractDir, new DirectoryInfo(extractFolder).Name, includePngMp3Box.Checked, SelectedLinkType), fileName);
                 }
-            } else {
+            }
+            else
+            {
                 string filesFound = "找到WZ文件: ";
                 var allFiles = Directory.GetFiles(filePath, "*.wz");
                 var nextLevelFiles = GetWzFilesInFolder(filePath);
-                if (allFiles.Length != 0 || nextLevelFiles.Count != 0) {
+                if (allFiles.Length != 0 || nextLevelFiles.Count != 0)
+                {
                     if (allFiles.Length == 0)
                         allFiles = nextLevelFiles.ToArray();
                     allFiles = allFiles.Where(fileName => !Regex.IsMatch(fileName, "[0-9]{3}.wz$", RegexOptions.IgnoreCase)).ToArray();
-                    foreach (var fileName in allFiles) {
+                    foreach (var fileName in allFiles)
+                    {
                         filesFound += Path.GetFileName(fileName) + ", ";
                     }
                     Info.AppendText(filesFound.Substring(0, filesFound.Length - 2) + "\r\n");
-                    if (allFiles.Length == 0) {
+                    if (allFiles.Length == 0)
+                    {
                         Array.Sort(allFiles, FileSizeCompare);
-                    } else {
-                        SortedDictionary<long, string> fileOrder = new SortedDictionary<long, string>();
-                        foreach (var fileName in allFiles) {
-                            FileInfo wzFile = new FileInfo(fileName);
-                            fileOrder.Add(DirSize(wzFile.Directory), fileName);
+                    }
+                    else
+                    {
+
+                        List<string> sortedFiles = new List<string>();
+                        foreach (var fileName in allFiles)
+                        {
+                            sortedFiles.Add(fileName);
                         }
-                        allFiles = fileOrder.Values.ToArray();
+                        sortedFiles.Sort((fileName1, fileName2) =>
+                        {
+                            FileInfo wzFile1 = new FileInfo(fileName1);
+                            FileInfo wzFile2 = new FileInfo(fileName2);
+                            return DirSize(wzFile1.Directory).CompareTo(DirSize(wzFile2.Directory));
+                        });
+                        allFiles = sortedFiles.ToArray();
                     }
                     CreateMultipleDumperThreads(filePath, allFiles, outputFolderTB.Text);
-                } else {
-                    MessageBox.Show("所選擇的資料夾不包含Wz檔案. 請選擇其他資料夾.", "No WZ Files Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("所選擇的資料夾不包含Wz檔案. 請選擇其他資料夾.", "沒有找到WZ檔案", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     UpdateToolstripStatus("");
                     EnableButtons();
                 }
