@@ -283,7 +283,7 @@ namespace WzDumper
                 {
                     if (allFiles.Length == 0)
                         allFiles = nextLevelFiles.ToArray();
-                    allFiles = allFiles.Where(fileName => !Regex.IsMatch(fileName, "[0-9]{3}.wz$", RegexOptions.IgnoreCase)).ToArray();
+                    allFiles = allFiles.Where(fileName => !Regex.IsMatch(fileName, "[0-9]{3}(_[0-9]+)?\\.wz$\n", RegexOptions.IgnoreCase)).ToArray();
                     foreach (var fileName in allFiles)
                     {
                         filesFound += Path.GetFileName(fileName) + ", ";
@@ -485,7 +485,7 @@ namespace WzDumper
             }
             if (!String.IsNullOrEmpty(message))
             {
-                UpdateTextBoxInfo(Info, "處理文件時發生錯誤 " + Path.GetFileName(fileName) + "\r\n訊息: " + message + "\r\nContinuing...", true);
+                UpdateTextBoxInfo(Info, "處理文件時發生錯誤 " + Path.GetFileName(fileName) + "\r\n訊息: " + message + "\r\n繼續...", true);
                 if (!fileName.EndsWith("List.wz"))
                     IsError = true;
                 return;
@@ -836,13 +836,13 @@ namespace WzDumper
 
         private void SelectWzFolder_Click(object sender, EventArgs e)
         {
-            var open = new FolderBrowserDialog { Description = "請選擇你要提取Wz的文件夾" };
+            var open = new FolderBrowserDialog { Description = "請選擇要提取WZ的資料夾" };
             if (open.ShowDialog() == DialogResult.OK)
             {
                 var allFiles = Directory.GetFiles(open.SelectedPath, "*.wz");
                 if (allFiles.Length == 0 && GetWzFilesInFolder(open.SelectedPath).Count == 0)
                 {
-                    MessageBox.Show("選擇的資料夾沒有Wz檔案. 請選擇其他資料夾.", "未找到 WZ 檔案", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("選擇的資料夾沒有WZ檔案. 請選擇其他資料夾.", "未找到 WZ 檔案", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
@@ -854,7 +854,7 @@ namespace WzDumper
 
         private void SelectExtractDestination_Click(object sender, EventArgs e)
         {
-            var open = new FolderBrowserDialog { Description = "請選擇你要提取出來放置的文件夾" };
+            var open = new FolderBrowserDialog { Description = "請選擇提取出來放置的資料夾" };
             if (open.ShowDialog() == DialogResult.OK)
             {
                 outputFolderTB.Text = open.SelectedPath;
