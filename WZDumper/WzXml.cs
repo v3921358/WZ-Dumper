@@ -35,7 +35,7 @@ namespace WzDumper {
         public bool IncludePngMp3 { get; }
         public LinkType LinkType { get; }
         public static XmlWriterSettings XmlSettings { get; set; } = new XmlWriterSettings {
-            Indent = true,
+            Indent = false,
             IndentChars = "    ",
             Encoding = Encoding.UTF8
         };

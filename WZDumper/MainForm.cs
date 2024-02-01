@@ -730,6 +730,7 @@ namespace WzDumper
             includeVersionInFolderBox.Enabled = true;
             MapleVersionComboBox.Enabled = true;
             multiThreadCheckBox.Enabled = true;
+            indentCheckBox.Enabled = true;
             if (!string.IsNullOrEmpty(outputFolderTB.Text))
                 openFolderButton.Focus();
             else
@@ -752,6 +753,7 @@ namespace WzDumper
             multiThreadCheckBox.Enabled = false;
             extractorThreadsLabel.Enabled = false;
             extractorThreadsNum.Enabled = false;
+            indentCheckBox.Enabled = false;
             Info.Focus();
         }
 
@@ -896,6 +898,12 @@ namespace WzDumper
         private void LinkTypeComboBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
+        }
+
+        
+        private void indentCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            WzXml.XmlSettings.Indent = indentCheckBox.Checked;
         }
     }
 
